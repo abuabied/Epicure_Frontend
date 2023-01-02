@@ -11,7 +11,7 @@ export const RestaurantHeroSection = (args: {
   img: String;
 }) => {
   const imgStyle = {
-    objectFit: "fill",
+    objectFit: "cover",
     "@media (max-width: 500px)": {
       width: "100vw",
       height: "35vh",
@@ -71,7 +71,7 @@ export const RestaurantHeroSection = (args: {
       <CardMedia
         component="img"
         image={require(`./../../../assets/restaurants-imgs/${args.img}`)}
-        alt="rest-img"
+        alt="dish-img"
         sx={imgStyle}
       />
 

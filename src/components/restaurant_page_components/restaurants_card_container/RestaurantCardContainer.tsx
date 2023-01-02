@@ -8,7 +8,7 @@ import {
   getNewRestaurants,
   getOpenRestaurants,
   getPopularRestaurants,
-} from "../../../services/data_fetch/RestaurantsDataFitch";
+} from "../../../services/data_fetch/RestaurantsDataFetch";
 import { SimpleCard } from "../../shared/card/simple_card/SimpleCard";
 import { NoStyleContainer } from "../../shared/helper_components/MyContainers";
 
