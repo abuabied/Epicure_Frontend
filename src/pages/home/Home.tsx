@@ -15,9 +15,9 @@ import {
 } from "../../components/shared/helper_components/MyContainers";
 import { scrollToTop } from "../../helpers/setWindowSize";
 import { ChefOfTheWeek } from "../../components/home_page_components/chef_of_the_week/ChefOfTheWeek";
-import { getPopularRestaurants } from "../../services/data_fetch/RestaurantsDataFitch";
+import { getPopularRestaurants } from "../../services/data_fetch/RestaurantsDataFetch";
 import { useState, useEffect } from "react";
-import { getChefOfTheWeek } from "../../services/data_fetch/ChefsDataFitch";
+import { getChefOfTheWeek } from "../../services/data_fetch/ChefsDataFetch";
 import { Chef } from "../../constants/interfaces";
 import { EmptyChef } from "../../constants/myDefaultValues";
 

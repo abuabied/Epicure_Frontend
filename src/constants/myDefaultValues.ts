@@ -28,7 +28,7 @@ export const EmptyRestaurant: Restaurant = {
   chefName: "noName",
   established: "0000",
   img: "noImg.png",
-  name: "----",
+  name: "NotFound",
   new: false,
   popular: false,
   open: false,

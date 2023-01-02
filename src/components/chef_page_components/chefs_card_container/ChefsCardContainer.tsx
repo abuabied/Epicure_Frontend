@@ -6,7 +6,7 @@ import {
   getAllChefs,
   getNewChefs,
   getPopularChefs,
-} from "../../../services/data_fetch/ChefsDataFitch";
+} from "../../../services/data_fetch/ChefsDataFetch";
 import { ChefImage } from "../../shared/chef_image/ChefImage";
 import { NoStyleContainer } from "../../shared/helper_components/MyContainers";
 

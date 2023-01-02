@@ -5,21 +5,28 @@ import { RestaurantDishesCategory } from "../../components/restaurant_page_compo
 import { RestaurantDishesContainer } from "../../components/restaurant_page_components/restaurant_page/RestaurantDishesContainer";
 import { RestaurantHeroSection } from "../../components/restaurant_page_components/restaurant_page/RestaurantHeroSection";
 import { RestaurantPageContainer } from "../../components/restaurant_page_components/restaurant_page/styles";
-import { DoubleEmptyLines, EmptyLine } from "../../components/shared/helper_components/EmptyLines";
+import {
+  DoubleEmptyLines,
+  EmptyLine,
+} from "../../components/shared/helper_components/EmptyLines";
 import { NoStyleContainer } from "../../components/shared/helper_components/MyContainers";
 import { Restaurant } from "../../constants/interfaces";
-import { EmptyDish, EmptyRestaurant } from "../../constants/myDefaultValues";
-import { getRestaurantByName } from "../../services/data_fetch/RestaurantsDataFitch";
+import { EmptyRestaurant } from "../../constants/myDefaultValues";
+import { getRestaurantByName } from "../../services/data_fetch/RestaurantsDataFetch";
 
 export const RestaurantPage = () => {
   let { restaurantName } = useParams();
 
-  const [restaurant, setRestaurant] = useState(EmptyRestaurant);
+  const [restaurant, setRestaurant] = useState<Restaurant>(EmptyRestaurant);
   const getRestaurant = async (restaurantName: String) => {
-    await getRestaurantByName(restaurantName).then((res) => setRestaurant(res));
+    await getRestaurantByName(restaurantName).then((res) =>
+      setRestaurant(res ? res[0] : EmptyRestaurant)
+    )
+    console.log(restaurantName)
   };
+
   useEffect(() => {
-    //getRestaurant(restaurantName !== undefined ? restaurantName : "NotFound");
+    getRestaurant(restaurantName !== undefined ? restaurantName : "NotFound");
   }, []);
 
   const textStyle = {
@@ -33,7 +40,7 @@ export const RestaurantPage = () => {
 
   return (
     <RestaurantPageContainer>
-      {restaurantName !== "tr" ? (
+      {restaurant.name !== "NotFound" ? (
         <NoStyleContainer>
           <RestaurantHeroSection
             name={restaurant.name}
@@ -44,34 +51,13 @@ export const RestaurantPage = () => {
           <EmptyLine />
           <RestaurantDishesCategory />
           <EmptyLine />
-          <RestaurantDishesContainer
-            dishes={[
-              EmptyDish,
-              EmptyDish,
-              EmptyDish,
-              EmptyDish,
-              EmptyDish,
-              EmptyDish,
-              EmptyDish,
-              EmptyDish,
-              EmptyDish,
-              EmptyDish,
-              EmptyDish,
-              EmptyDish,
-              EmptyDish,
-              EmptyDish,
-              EmptyDish,
-              EmptyDish,
-              EmptyDish,
-              EmptyDish,
-              EmptyDish,
-              EmptyDish,
-            ]}
-          />
+          <RestaurantDishesContainer dishes={restaurant.dishes} />
         </NoStyleContainer>
       ) : (
         <Typography component="div" sx={textStyle}>
-          <b>Restaurant not found!</b> Please make sure you enterd the correct restaurant name.<br/>
+          <b>Restaurant not found!</b> Please make sure you enterd the correct
+          restaurant name.
+          <br />
           -Restaurant name after the last "/"(dash)
         </Typography>
       )}
