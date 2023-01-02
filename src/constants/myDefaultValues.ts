@@ -13,7 +13,7 @@ export const EmptyChef: Chef = {
 };
 
 export const EmptyDish: Dish = {
-  categeory: "lunch",
+  categeory: "dinner",
   cusine: "noCusine",
   img: "noImg.png",
   ingrediants: "noIng",
