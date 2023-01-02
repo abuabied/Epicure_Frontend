@@ -38,3 +38,5 @@ export const EmptyRestaurant: Restaurant = {
   signatureDish: [EmptyDish],
   dishes: [EmptyDish],
 };
+
+const GitHubMergeCheck = "This change is to test out merging the change"
