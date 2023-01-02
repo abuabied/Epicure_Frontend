@@ -13,7 +13,7 @@ export const EmptyChef: Chef = {
 };
 
 export const EmptyDish: Dish = {
-  categeory: "lunch",
+  categeory: "dinner",
   cusine: "noCusine",
   img: "noImg.png",
   ingrediants: "noIng",
@@ -38,5 +38,3 @@ export const EmptyRestaurant: Restaurant = {
   signatureDish: [EmptyDish],
   dishes: [EmptyDish],
 };
-
-const GitHubMergeCheck = "This change is to test out merging the change"
