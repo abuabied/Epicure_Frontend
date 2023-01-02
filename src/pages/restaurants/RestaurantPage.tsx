@@ -22,7 +22,6 @@ export const RestaurantPage = () => {
     await getRestaurantByName(restaurantName).then((res) =>
       setRestaurant(res ? res[0] : EmptyRestaurant)
     )
-    console.log(restaurantName)
   };
 
   useEffect(() => {
