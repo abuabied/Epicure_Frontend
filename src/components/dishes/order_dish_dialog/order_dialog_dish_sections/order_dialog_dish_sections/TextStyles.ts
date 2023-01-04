@@ -1,4 +1,3 @@
-import SetWindowSize from "../../../../../helpers/setWindowSize";
 
 export   const TitleStyle = {
   fontWeight: 200,
