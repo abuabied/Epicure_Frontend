@@ -4,7 +4,7 @@ import { scrollToTop } from "../../../../helpers/setWindowSize";
 import { EmptyLine } from "../../../shared/helper_components/EmptyLines";
 import { ReactComponent as CloseIcon } from "./../../../../assets/icons/X.svg";
 
-export const HamburgerDrawer = (probs: {
+export const HamburgerDrawer = (props: {
   open: boolean;
   handleClose: () => void;
 }) => {
@@ -32,15 +32,15 @@ export const HamburgerDrawer = (probs: {
 
   return (
     <Drawer
-      open={probs.open}
-      onClick={probs.handleClose}
+      open={props.open}
+      onClick={props.handleClose}
       anchor={"top"}
       hideBackdrop={true}
       transitionDuration={200}
     >
       <List>
         <ListItem>
-          <CloseIcon onClick={probs.handleClose} cursor={"pointer"} />
+          <CloseIcon onClick={props.handleClose} cursor={"pointer"} />
         </ListItem>
         <EmptyLine />
         <ListItem sx={{ cursor: "pointer" }} onClick={goToRestaurants}>

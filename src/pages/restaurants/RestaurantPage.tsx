@@ -1,6 +1,7 @@
 import { Typography } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { OrderDishDialog } from "../../components/dishes/order_dish_dialog/OrderDishDialog";
 import { RestaurantDishesCategory } from "../../components/restaurant_page_components/restaurant_page/RestaurantDishesCategory";
 import { RestaurantDishesContainer } from "../../components/restaurant_page_components/restaurant_page/RestaurantDishesContainer";
 import { RestaurantHeroSection } from "../../components/restaurant_page_components/restaurant_page/RestaurantHeroSection";
@@ -21,7 +22,15 @@ export const RestaurantPage = () => {
   const getRestaurant = async (restaurantName: String) => {
     await getRestaurantByName(restaurantName).then((res) =>
       setRestaurant(res ? res[0] : EmptyRestaurant)
-    )
+    );
+  };
+
+  const [openDialog, setOpenDialog] = useState(false);
+  const openDialogClick = () => {
+    setOpenDialog(true);
+  };
+  const closeDialogClick = () => {
+    setOpenDialog(false);
   };
 
   useEffect(() => {
@@ -50,7 +59,10 @@ export const RestaurantPage = () => {
           <EmptyLine />
           <RestaurantDishesCategory />
           <EmptyLine />
-          <RestaurantDishesContainer dishes={restaurant.dishes} />
+          <RestaurantDishesContainer
+            dishes={restaurant.dishes}
+            handleClickDish={openDialogClick}
+          />
         </NoStyleContainer>
       ) : (
         <Typography component="div" sx={textStyle}>
@@ -61,6 +73,7 @@ export const RestaurantPage = () => {
         </Typography>
       )}
       <DoubleEmptyLines />
+      <OrderDishDialog handleClose={closeDialogClick} open={openDialog} />
     </RestaurantPageContainer>
   );
 };
