@@ -2,12 +2,34 @@ import { ReactComponent as SearchLogo } from "./../../../../assets/icons/search.
 import { ReactComponent as ProfileLogo } from "./../../../../assets/icons/profile.svg";
 import { ReactComponent as BagLogo } from "./../../../../assets/icons/bag.svg";
 import { Box } from "@mui/material";
+import {
+  getCookie,
+  listenCookieChange,
+} from "../../../../services/data/cookies/cookieFunctions";
+import { useEffect, useState } from "react";
 
 export const HeaderAccessibility = (handlers: {
   openSearch: () => void;
   openProfile: () => void;
   openCart: () => void;
 }) => {
+  const [bagItems, setBagItems] = useState([]);
+
+  listenCookieChange(() => {
+    updateBagItems();
+  }, 2000);
+
+  const updateBagItems = () => {
+    const currentItemsJson = getCookie("bagItems");
+    let currentItems = [];
+    if (currentItemsJson !== "") currentItems = JSON.parse(currentItemsJson);
+    if (bagItems.length !== currentItems.length) setBagItems(currentItems);
+  };
+
+  useEffect(() => {
+    updateBagItems();
+  }, []);
+
   const cartLogoBoxStyle = {
     fontSize: "10px",
     height: "content",
@@ -30,7 +52,7 @@ export const HeaderAccessibility = (handlers: {
       />
       <ProfileLogo cursor={"pointer"} height="100%" />
       <Box paddingTop="5px" onClick={handlers.openCart}>
-        <Box sx={cartLogoBoxStyle}>0</Box>
+        <Box sx={cartLogoBoxStyle}>{bagItems.length}</Box>
         <BagLogo cursor={"pointer"} height="85%" />
       </Box>
     </>

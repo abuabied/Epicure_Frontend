@@ -1,9 +1,9 @@
 
 export   const TitleStyle = {
   fontWeight: 200,
-  lineHeight: "16px",
+  lineHeight: "14px",
   letterSpacing: "2px",
-  fontSize: { sm: "24px", md: "26px", lg: "28px" },
+  fontSize: { sm: "16px", md: "18px", lg: "20px" },
   textDecoration: "underline",
   textDecorationColor: "#DE9200E5",
   textDecorationThickness: "3px",
@@ -11,7 +11,7 @@ export   const TitleStyle = {
 };
 export   const ContentStyle = {
   fontWeight: 200,
-  lineHeight: "16px",
+  lineHeight: "14px",
   letterSpacing: "2px",
-  fontSize: { sm: "21px", md: "23px", lg: "25px" },
+  fontSize: { sm: "14px", md: "16px", lg: "18px" },
 };

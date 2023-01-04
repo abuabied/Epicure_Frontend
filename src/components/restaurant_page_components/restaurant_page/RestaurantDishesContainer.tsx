@@ -9,6 +9,7 @@ import { NoStyleContainer } from "../../shared/helper_components/MyContainers";
 export const RestaurantDishesContainer = (args: {
   dishes: Dish[];
   handleClickDish: () => void;
+  isRestaurantOpen: boolean;
 }) => {
   const dishesCategory = useSelector(
     (state: any) => state.dishesCategoryTab.value
@@ -63,6 +64,7 @@ export const RestaurantDishesContainer = (args: {
             dish={dish}
             openOrderDishDialog={args.handleClickDish}
             key={`sig-${dish.name}`}
+            isRestaurantOpen={args.isRestaurantOpen}
           />
         ))}
       </Container>

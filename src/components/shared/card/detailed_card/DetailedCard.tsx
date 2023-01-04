@@ -6,21 +6,27 @@ import { NoStyleContainer } from "../../helper_components/MyContainers";
 import { ReactComponent as Spicy } from "./../../../../assets/icons/spicyS.svg";
 import { ReactComponent as Vegan } from "./../../../../assets/icons/veganS.svg";
 import { ReactComponent as Vegetarian } from "./../../../../assets/icons/vegetarianS.svg";
+import { toast } from "react-toastify";
 
 export const DetailedCard = (args: {
   dish: Dish;
   openOrderDishDialog: () => void;
+  isRestaurantOpen: boolean;
 }) => {
-
   const dispatch = useDispatch();
   const setCurrentDishOrderClick = () => {
     dispatch(setCurrentDishOrder(args.dish));
   };
 
   const openDishOrderDialog = () => {
-    setCurrentDishOrderClick();
-    args.openOrderDishDialog();
-  }
+    if (args.isRestaurantOpen) {
+      setCurrentDishOrderClick();
+      args.openOrderDishDialog();
+    }
+    else{
+        toast.info("Restaurant is closed!");
+    }
+  };
 
   const cardTileStyle = {
     fontSize: { xs: "20px", sm: "28px", md: "32px" },
@@ -49,8 +55,8 @@ export const DetailedCard = (args: {
   };
 
   const cardStyle = {
-    minWidth: "220px",
-    maxWidth: "270px",
+    minWidth: "240px",
+    maxWidth: "240px",
     backgroundColor: "#F9F4EA",
     display: "flex",
     flexDirection: "column",
