@@ -10,7 +10,6 @@ export   const TitleStyle = {
   textDecorationThickness: "3px",
   marginBottom: "1rem",
 };
-
 export   const ContentStyle = {
   fontWeight: 200,
   lineHeight: "16px",
