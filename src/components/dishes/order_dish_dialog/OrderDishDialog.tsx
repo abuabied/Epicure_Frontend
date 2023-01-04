@@ -6,16 +6,50 @@ import { OrderDialogDishOptions } from "./order_dialog_dish_sections/order_dialo
 import { useSelector } from "react-redux";
 import SetWindowSize from "../../../helpers/setWindowSize";
 import { EmptyLine } from "../../shared/helper_components/EmptyLines";
+import { StyledButton } from "../../shared/button/StyledButton";
+import { toast } from "react-toastify";
+import {
+  createCookie,
+  getCookie,
+} from "../../../services/data/cookies/cookieFunctions";
 
 export const OrderDishDialog = (props: {
   open: boolean;
   handleClose: () => void;
 }) => {
-  const fullScreen = SetWindowSize() <= 768;
-  const dish = useSelector((state: any) => state.currentDishOrder.value);
+  const fullScreen = SetWindowSize() <= 501;
+  const currentDishOrder = useSelector(
+    (state: any) => state.currentDishOrder.value
+  );
+  const dish = currentDishOrder.dish;
+
+  const addToBagClick = () => {
+    try {
+      const newItem = {
+        dishName: dish.name,
+        restaurantName: dish.restaurantName,
+        dishImg: dish.img,
+        dishSides: currentDishOrder.sides,
+        dishChanges: currentDishOrder.changes,
+        finalPrice: dish.price * 1,
+      };
+      const currentItemsJson = getCookie("bagItems");
+      let currentItems = [];
+      if (currentItemsJson !== "") currentItems = JSON.parse(currentItemsJson);
+      currentItems.push(newItem);
+
+      let itemsJson = JSON.stringify(currentItems);
+      createCookie("bagItems", itemsJson);
+      toast.success("Order added!");
+    } catch (error) {
+      toast.error("Something went wrong! Please re-order.");
+    } finally {
+      props.handleClose();
+    }
+  };
 
   return (
-    <Dialog open={props.open} fullScreen={fullScreen}>
+    <Dialog open={props.open} fullScreen={fullScreen} maxWidth="xs">
       <ColumnContainer>
         <CloseIcon
           onClick={props.handleClose}
@@ -29,7 +63,7 @@ export const OrderDishDialog = (props: {
               component="img"
               image={require(`./../../../assets/dishes-imgs/${dish.img}`)}
               alt="dish-img"
-              sx={{ objectFit: "cover", height: "30vh" }}
+              sx={{ objectFit: "cover", height: "40vh" }}
             />
             <ColumnContainer
               style={{
@@ -40,6 +74,12 @@ export const OrderDishDialog = (props: {
               <OrderDialogDishInfo dish={dish} />
               <EmptyLine />
               <OrderDialogDishOptions />
+              <EmptyLine />
+              <StyledButton
+                buttonText={"add to bag"}
+                buttonType="dark"
+                onClick={addToBagClick}
+              />
             </ColumnContainer>
           </ColumnContainer>
         </ClickAwayListener>

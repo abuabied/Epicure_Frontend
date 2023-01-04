@@ -9,20 +9,19 @@ export const OrderDialogDishInfo = (args: { dish: Dish }) => {
     width: "100%",
     textAlign: { xs: "left", sm: "center" },
     margin: 0,
-    marginTop: "0.5rem",
     fontWeight: 400,
-    fontSize: {xs:"22px", sm:"26px",md:"32px", lg:"38px"},
-    lineHeight: {sm:"32px", md:"36px"},
+    fontSize: {xs:"20px", sm:"22px",md:"24px", lg:"28px"},
+    lineHeight: {sm:"16px", md:"20px"},
     letterSpacing: "2.7px",
   };
 
   const dishIngrediantsStyle = {
     width: "100%",
     textAlign: { xs: "left", sm: "center" },
-    margin: { sm: "0 2.5rem", md: "0 3.5rem" },
+    margin: { sm: "0 1rem", md: "0 2rem" },
     fontWeight: 200,
-    fontSize: { md: "16px", lg:"20px" },
-    lineHeight: { md: "26px", lg: "32px" },
+    fontSize: { md: "14px", lg:"18px" },
+    lineHeight: { md: "20px", lg: "26px" },
     letterSpacing: "2.7px",
   };
 
@@ -31,8 +30,8 @@ export const OrderDialogDishInfo = (args: { dish: Dish }) => {
     textAlign: { xs: "left", sm: "center" },
     margin: 0,
     fontWeight: 400,
-    fontSize: { xs:"20px" ,sm: "24px", md: "28px", lg:"32px" },
-    lineHeight: "18px",
+    fontSize: { xs:"18px" ,sm: "20px", md: "22px", lg:"26px" },
+    lineHeight: "14px",
     letterSpacing: "2.7px",
   };
 

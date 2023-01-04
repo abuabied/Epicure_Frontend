@@ -39,26 +39,21 @@ export const ChefCategoryBar = () => {
     },
   };
 
-   useEffect(() => {
-     clickAll();
-   }, []);
+  useEffect(() => {
+    clickAll();
+  }, []);
 
   return (
-    <NoStyleContainer
-      style={{
-        minWidth: "100%",
-        display: "flex",
-        alignContent: "center",
-        justifyContent: "space-around",
-      }}
-    >
+    <NoStyleContainer style={{ width: "100%" }}>
       <Tabs
         value={currentCategory}
-        centered
         sx={{
-          minWidth: { xs: "100%", sm: "70%", md: "60%", lg: "50%" },
+          width: "100%",
           "& .MuiTabs-indicator": {
             backgroundColor: "#ffff",
+          },
+          "& .MuiTabs-flexContainer": {
+            justifyContent: "space-around",
           },
         }}
       >
@@ -74,5 +69,3 @@ export const ChefCategoryBar = () => {
     </NoStyleContainer>
   );
 };
-
-

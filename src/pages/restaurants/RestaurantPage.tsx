@@ -1,5 +1,6 @@
 import { Typography } from "@mui/material";
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { OrderDishDialog } from "../../components/dishes/order_dish_dialog/OrderDishDialog";
 import { RestaurantDishesCategory } from "../../components/restaurant_page_components/restaurant_page/RestaurantDishesCategory";
@@ -13,11 +14,12 @@ import {
 import { NoStyleContainer } from "../../components/shared/helper_components/MyContainers";
 import { Restaurant } from "../../constants/interfaces";
 import { EmptyRestaurant } from "../../constants/myDefaultValues";
+import { resetCurrentDish } from "../../services/data/dishes/currentDishOrderSlicer";
 import { getRestaurantByName } from "../../services/data_fetch/RestaurantsDataFetch";
 
 export const RestaurantPage = () => {
   let { restaurantName } = useParams();
-
+  const dispatch = useDispatch();
   const [restaurant, setRestaurant] = useState<Restaurant>(EmptyRestaurant);
   const getRestaurant = async (restaurantName: String) => {
     await getRestaurantByName(restaurantName).then((res) =>
@@ -31,6 +33,7 @@ export const RestaurantPage = () => {
   };
   const closeDialogClick = () => {
     setOpenDialog(false);
+    dispatch(resetCurrentDish());
   };
 
   useEffect(() => {
@@ -61,6 +64,7 @@ export const RestaurantPage = () => {
           <EmptyLine />
           <RestaurantDishesContainer
             dishes={restaurant.dishes}
+            isRestaurantOpen={restaurant.open}
             handleClickDish={openDialogClick}
           />
         </NoStyleContainer>

@@ -13,23 +13,23 @@ export const RestaurantHeroSection = (args: {
   const imgStyle = {
     objectFit: "cover",
     "@media (max-width: 500px)": {
-      width: "100vw",
+      width: "100%",
       height: "35vh",
     },
     "@media (min-width: 501px)": {
       width: "100%",
-      height: "40vh",
+      height: "45vh",
     },
     "@media (min-width: 769px)": {
       width: "100%",
-      height: "50vh",
+      height: "55vh",
     },
   };
 
   const nameStyle = {
     fontSize: { xs: "24px", sm: "40px" },
     fontWeight: "400",
-    lineHeight: { xs: "35px", sm: "45px" },
+    lineHeight: { xs: "36px", sm: "46px" },
     letterSpacing: { xs: "2.7", sm: "3.7px" },
     textAlign: "left",
     "@media(min-width: 501px)": {
@@ -42,7 +42,7 @@ export const RestaurantHeroSection = (args: {
   const chefNameStyle = {
     fontSize: { xs: "19px", sm: "28px" },
     fontWeight: "100",
-    lineHeight: { xs: "30px", sm: "40px" },
+    lineHeight: { xs: "32px", sm: "42px" },
     letterSpacing: "2px",
     textAlign: "left",
     "@media(min-width: 501px)": {
@@ -55,7 +55,7 @@ export const RestaurantHeroSection = (args: {
   const isOpenStyle = {
     fontSize: { xs: "12px", sm: "18px" },
     fontWeight: "100",
-    lineHeight: { xs: "25px", sm: "30px" },
+    lineHeight: { xs: "28px", sm: "30px" },
     letterSpacing: "2px",
     textAlign: "left",
     "@media(min-width: 501px)": {

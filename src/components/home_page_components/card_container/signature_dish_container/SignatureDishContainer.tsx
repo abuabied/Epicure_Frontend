@@ -1,6 +1,8 @@
 import { Container } from "@mui/material";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Restaurant } from "../../../../constants/interfaces";
+import { resetCurrentDish } from "../../../../services/data/dishes/currentDishOrderSlicer";
 import { OrderDishDialog } from "../../../dishes/order_dish_dialog/OrderDishDialog";
 import { DetailedCard } from "../../../shared/card/detailed_card/DetailedCard";
 import { DoubleEmptyLines } from "../../../shared/helper_components/EmptyLines";
@@ -11,12 +13,14 @@ export const SignatureDishContainer = (args: {
   containerTitle: string;
   restaurantList: Restaurant[]
 }) => {
+  const dispatch = useDispatch();
   const [openDialog, setOpenDialog] = useState(false);
   const openDialogClick = () => {
     setOpenDialog(true);
   };
   const closeDialogClick = () => {
     setOpenDialog(false);
+    dispatch(resetCurrentDish());
   };
   
   const containerStyle = {
@@ -24,7 +28,7 @@ export const SignatureDishContainer = (args: {
     flexDirection: "row",
     gap: "2rem",
     padding: { xs: 0, sm: 0, md: 0, lg: 0 },
-    justifyContent: { md: "flex-start", lg: "center" },
+    justifyContent: { sm: "flex-start", md: "center" },
     overflowX: "scroll",
     overflowY: "hidden",
     whiteSpace: { md: "nowrap", lg: "normal" },
@@ -40,6 +44,7 @@ export const SignatureDishContainer = (args: {
           <DetailedCard
             dish={restaurant.signatureDish[0]}
             openOrderDishDialog={openDialogClick}
+            isRestaurantOpen={restaurant.open}
             key={`sig-${restaurant.name}-${restaurant.signatureDish[0].name}`}
           />
         ))}
