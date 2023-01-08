@@ -50,7 +50,11 @@ export const HeaderAccessibility = (handlers: {
         height="100%"
         onClick={handlers.openSearch}
       />
-      <ProfileLogo cursor={"pointer"} height="100%" />
+      <ProfileLogo
+        cursor={"pointer"}
+        height="100%"
+        onClick={handlers.openProfile}
+      />
       <Box paddingTop="5px" onClick={handlers.openCart}>
         <Box sx={cartLogoBoxStyle}>{bagItems.length}</Box>
         <BagLogo cursor={"pointer"} height="85%" />

@@ -3,8 +3,10 @@ import { HamburgerDrawer } from "./navbar_drawers/hamburger_drawer/HamburgerDraw
 import { HeaderContainer } from "./styles";
 import { SearchDrawer } from "./navbar_drawers/search_drawer/SearchDrawer";
 import { CartDrawer } from "./navbar_drawers/cart_drawer/CartDrawer";
-import { ProfileDrawer } from "./navbar_drawers/profile_drawer/ProfileDrawer";
 import { HeaderNavBar } from "./header_navbar/HeaderNavBar";
+import { ProfileDialog } from "./navbar_drawers/profile_dialog/ProfileDialog";
+import { getCookie } from "../../services/data/cookies/cookieFunctions";
+import { toast } from "react-toastify";
 
 export const Header = () => {
   const [hamMenueDrawerOpen, setHamMenueDrawerOpen] = useState(false);
@@ -32,7 +34,8 @@ export const Header = () => {
 
   const handleClickProfileDrawer = {
     open: () => {
-      setProfileDrawerOpen(true);
+      if (getCookie("loggedIn") === "true") toast.success("You is logged mate!");
+      else setProfileDrawerOpen(true);
     },
     close: () => {
       setProfileDrawerOpen(false);
@@ -64,7 +67,7 @@ export const Header = () => {
         open={searchDrawerOpen}
         handleClose={handleClickSearchDrawer.close}
       />
-      <ProfileDrawer
+      <ProfileDialog
         open={profileDrawerOpen}
         handleClose={handleClickProfileDrawer.close}
       />

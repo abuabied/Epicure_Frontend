@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import SetWindowSize from "../../../../../helpers/setWindowSize";
 import { setCurrentDishSides } from "../../../../../services/data/dishes/currentDishOrderSlicer";
 import { ColumnContainer } from "../../../../shared/helper_components/MyContainers";
-import { ContentStyle, TitleStyle } from "./TextStyles";
+import { contentStyle, titleStyle } from "./TextStyles";
 
 export const OrderDialogDishSides = () => {
   const [selected, setSelected] = useState("")
@@ -23,7 +23,7 @@ export const OrderDialogDishSides = () => {
 
   return (
     <ColumnContainer style={containerStyle}>
-      <Typography sx={TitleStyle}>Choose a side</Typography>
+      <Typography sx={titleStyle}>Choose a side</Typography>
       <RadioGroup
         aria-labelledby="Choose a side"
         name="radio-buttons-group"
@@ -32,13 +32,13 @@ export const OrderDialogDishSides = () => {
       >
         <FormControlLabel
           value="Bread"
-          label={<Typography sx={ContentStyle}>Bread</Typography>}
+          label={<Typography sx={contentStyle}>Bread</Typography>}
           control={<Radio />}
         />
         <FormControlLabel
           value="Sticky Rice"
           control={<Radio />}
-          label={<Typography sx={ContentStyle}>Sticky rice</Typography>}
+          label={<Typography sx={contentStyle}>Sticky rice</Typography>}
         />
       </RadioGroup>
     </ColumnContainer>

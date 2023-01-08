@@ -1,5 +1,5 @@
 
-export   const TitleStyle = {
+export   const titleStyle = {
   fontWeight: 200,
   lineHeight: "14px",
   letterSpacing: "2px",
@@ -9,7 +9,7 @@ export   const TitleStyle = {
   textDecorationThickness: "3px",
   marginBottom: "1rem",
 };
-export   const ContentStyle = {
+export   const contentStyle = {
   fontWeight: 200,
   lineHeight: "14px",
   letterSpacing: "2px",
