@@ -4,7 +4,7 @@ import { EmptyDish } from "../../../constants/myDefaultValues";
 export const currentDishOrderSlice = createSlice({
   name: "currentDishOrder",
   initialState: {
-    value: { dish: EmptyDish, sides: [], changes: [] },
+    value: { dish: EmptyDish, sides: [], changes: [], quantity: 1 },
   },
   reducers: {
     setCurrentDishOrder: (state, action) => {
@@ -21,10 +21,14 @@ export const currentDishOrderSlice = createSlice({
       if (lengthBefore === state.value.changes.length)
         state.value.changes.push(action.payload);
     },
+    setCurrentDishQuantity: (state, action) => {
+      state.value.quantity = action.payload;
+    },
     resetCurrentDish: (state) => {
       state.value.dish = EmptyDish;
       state.value.sides = [];
       state.value.changes = [];
+      state.value.quantity = 1;
     },
   },
 });
@@ -34,6 +38,7 @@ export const {
   setCurrentDishSides,
   setCurrentDishChanges,
   resetCurrentDish,
+  setCurrentDishQuantity,
 } = currentDishOrderSlice.actions;
 
 export default currentDishOrderSlice.reducer;

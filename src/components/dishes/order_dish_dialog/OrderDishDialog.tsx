@@ -31,7 +31,7 @@ export const OrderDishDialog = (props: {
         dishImg: dish.img,
         dishSides: currentDishOrder.sides,
         dishChanges: currentDishOrder.changes,
-        finalPrice: dish.price * 1,
+        finalPrice: dish.price * currentDishOrder.quantity,
       };
       const currentItemsJson = getCookie("bagItems");
       let currentItems = [];
