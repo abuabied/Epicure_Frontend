@@ -68,7 +68,6 @@ export const OrderDishDialog = (props: {
             <ColumnContainer
               style={{
                 padding: "1.5rem",
-                paddingLeft: "1.5rem",
               }}
             >
               <OrderDialogDishInfo dish={dish} />
