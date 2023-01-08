@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import SetWindowSize from "../../../../../helpers/setWindowSize";
 import { ColumnContainer } from "../../../../shared/helper_components/MyContainers";
-import { TitleStyle } from "./TextStyles";
+import { titleStyle } from "./TextStyles";
 
 export const OrderDialogDishQuantity = () => {
   const alignItemsStyle = SetWindowSize() < 600 ? "flex-start" : "center";
@@ -12,7 +12,7 @@ export const OrderDialogDishQuantity = () => {
 
   return (
     <ColumnContainer style={containerStyle}>
-      <Typography sx={TitleStyle}>Quantity</Typography>
+      <Typography sx={titleStyle}>Quantity</Typography>
     </ColumnContainer>
   );
 };
