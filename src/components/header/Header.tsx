@@ -12,7 +12,7 @@ export const Header = () => {
   const [hamMenueDrawerOpen, setHamMenueDrawerOpen] = useState(false);
   const [searchDrawerOpen, setSearchDrawerOpen] = useState(false);
   const [profileDrawerOpen, setProfileDrawerOpen] = useState(false);
-  const [cartDrawerOpen, setCartDrawerOpen] = useState(false);
+  const [bagDialogOpen, setBagDialogOpen] = useState(false);
 
   const handleClickHamMenueDrawer = {
     open: () => {
@@ -42,12 +42,12 @@ export const Header = () => {
     },
   };
 
-  const handleClickCartDrawer = {
+  const handleClickBagDialog = {
     open: () => {
-      setCartDrawerOpen(true);
+      setBagDialogOpen(true);
     },
     close: () => {
-      setCartDrawerOpen(false);
+      setBagDialogOpen(false);
     },
   };
 
@@ -57,7 +57,7 @@ export const Header = () => {
         openHamMenue={handleClickHamMenueDrawer.open}
         openSearch={handleClickSearchDrawer.open}
         openProfile={handleClickProfileDrawer.open}
-        openCart={handleClickCartDrawer.open}
+        openBag={handleClickBagDialog.open}
       />
       <HamburgerDrawer
         open={hamMenueDrawerOpen}
@@ -72,8 +72,8 @@ export const Header = () => {
         handleClose={handleClickProfileDrawer.close}
       />
       <CartDrawer
-        open={cartDrawerOpen}
-        handleClose={handleClickCartDrawer.close}
+        open={bagDialogOpen}
+        handleClose={handleClickBagDialog.close}
       />
     </HeaderContainer>
   );
