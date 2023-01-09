@@ -7,7 +7,7 @@ import { ColumnContainer } from "../../../../shared/helper_components/MyContaine
 import { contentStyle, titleStyle } from "./TextStyles";
 
 export const OrderDialogDishSides = () => {
-  const [selected, setSelected] = useState("")
+  const [selected, setSelected] = useState("Bread");
   const dispatch = useDispatch();
   
   const alignItemsStyle = SetWindowSize() < 600 ? "flex-start" : "center";
