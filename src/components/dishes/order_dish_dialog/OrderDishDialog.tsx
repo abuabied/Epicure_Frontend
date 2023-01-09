@@ -3,43 +3,47 @@ import { ReactComponent as CloseIcon } from "./../../../assets/icons/X.svg";
 import { ColumnContainer } from "../../shared/helper_components/MyContainers";
 import { OrderDialogDishInfo } from "./order_dialog_dish_sections/OrderDialogDishInfo";
 import { OrderDialogDishOptions } from "./order_dialog_dish_sections/order_dialog_dish_sections/OrderDialogDishOptions";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import SetWindowSize from "../../../helpers/setWindowSize";
 import { EmptyLine } from "../../shared/helper_components/EmptyLines";
 import { StyledButton } from "../../shared/button/StyledButton";
 import { toast } from "react-toastify";
-import {
-  createCookie,
-  getCookie,
-} from "../../../services/data/cookies/cookieFunctions";
+import { addDishToOrder } from "../../../services/data/dishes/dishesInOrderSlicer";
 
 export const OrderDishDialog = (props: {
   open: boolean;
   handleClose: () => void;
 }) => {
   const fullScreen = SetWindowSize() <= 501;
+  const dispatch = useDispatch()
+
   const currentDishOrder = useSelector(
     (state: any) => state.currentDishOrder.value
   );
   const dish = currentDishOrder.dish;
 
+  const createNewItem = () => {
+    return {
+      dishName: dish.name,
+      restaurantName: dish.restaurantName,
+      dishImg: dish.img,
+      dishSides: currentDishOrder.sides,
+      dishChanges: currentDishOrder.changes,
+      finalPrice: dish.price * currentDishOrder.quantity,
+    };
+  };
+
   const addToBagClick = () => {
     try {
-      const newItem = {
-        dishName: dish.name,
-        restaurantName: dish.restaurantName,
-        dishImg: dish.img,
-        dishSides: currentDishOrder.sides,
-        dishChanges: currentDishOrder.changes,
-        finalPrice: dish.price * currentDishOrder.quantity,
-      };
-      const currentItemsJson = getCookie("bagItems");
+      const newItem = createNewItem();
+      const currentItemsJson = window.localStorage.getItem("bagItems");
       let currentItems = [];
-      if (currentItemsJson !== "") currentItems = JSON.parse(currentItemsJson);
+      if (currentItemsJson) currentItems = JSON.parse(currentItemsJson);
       currentItems.push(newItem);
-
       let itemsJson = JSON.stringify(currentItems);
-      createCookie("bagItems", itemsJson);
+      window.localStorage.setItem("bagItems", itemsJson);
+      dispatch(addDishToOrder(newItem));
+      
       toast.success("Order added!");
     } catch (error) {
       toast.error("Something went wrong! Please re-order.");
