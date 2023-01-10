@@ -5,25 +5,28 @@ export const dishesInOrderSlice = createSlice({
   initialState: {
     value: [],
     counter: 0,
+    restaurantName: "",
   },
   reducers: {
-    setOnGoingOrder: (state, action) => {
+    setDishesInOrder: (state, action) => {
       state.value = action.payload;
       state.counter = action.payload.length;
     },
-    addDishToOrder: (state, action) => {
-      state.value.push(action.payload);
-      state.counter = state.counter + 1;
-    },
-    removeDishFromOrder: (state, action) => {},
     EmptyOrder: (state, action) => {
       state.value = [];
       state.counter = 0;
+      state.restaurantName = "";
+    },
+    setRestaurantName: (state, action) => {
+      state.restaurantName = action.payload;
     },
   },
 });
 
-export const { addDishToOrder, EmptyOrder, setOnGoingOrder } =
-  dishesInOrderSlice.actions;
+export const {
+  setDishesInOrder,
+  EmptyOrder,
+  setRestaurantName,
+} = dishesInOrderSlice.actions;
 
 export default dishesInOrderSlice.reducer;

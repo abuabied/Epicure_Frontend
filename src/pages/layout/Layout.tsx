@@ -6,7 +6,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { setOnGoingOrder } from "../../services/data/dishes/dishesInOrderSlicer";
+import { setDishesInOrder } from "../../services/data/dishes/dishesInOrderSlicer";
 
 export const Layout = () => {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ export const Layout = () => {
     let currentItems = [];
     if (currentItemsJson) currentItems = JSON.parse(currentItemsJson);
     if (currentItems?.length > 0) {
-      dispatch(setOnGoingOrder(currentItems));
+      dispatch(setDishesInOrder(currentItems));
     }
   };
 
