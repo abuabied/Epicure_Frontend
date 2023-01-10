@@ -8,19 +8,27 @@ import SetWindowSize from "../../../helpers/setWindowSize";
 import { EmptyLine } from "../../shared/helper_components/EmptyLines";
 import { StyledButton } from "../../shared/button/StyledButton";
 import { toast } from "react-toastify";
-import { addDishToOrder } from "../../../services/data/dishes/dishesInOrderSlicer";
+import {
+  setDishesInOrder,
+  setRestaurantName,
+} from "../../../services/data/dishes/dishesInOrderSlicer";
+import { resetCurrentDish } from "../../../services/data/dishes/currentDishOrderSlicer";
 
 export const OrderDishDialog = (props: {
   open: boolean;
   handleClose: () => void;
 }) => {
   const fullScreen = SetWindowSize() <= 501;
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const currentDishOrder = useSelector(
     (state: any) => state.currentDishOrder.value
   );
   const dish = currentDishOrder.dish;
+
+  const restaurantName = useSelector(
+    (state: any) => state.dishesInOrder.restaurantName
+  );
 
   const createNewItem = () => {
     return {
@@ -35,16 +43,23 @@ export const OrderDishDialog = (props: {
 
   const addToBagClick = () => {
     try {
-      const newItem = createNewItem();
-      const currentItemsJson = window.localStorage.getItem("bagItems");
-      let currentItems = [];
-      if (currentItemsJson) currentItems = JSON.parse(currentItemsJson);
-      currentItems.push(newItem);
-      let itemsJson = JSON.stringify(currentItems);
-      window.localStorage.setItem("bagItems", itemsJson);
-      dispatch(addDishToOrder(newItem));
-      
-      toast.success("Order added!");
+      if (restaurantName === dish.restaurantName || restaurantName === "") {
+        const newItem = createNewItem();
+        const currentItemsJson = window.localStorage.getItem("bagItems");
+        let currentItems = [];
+        if (currentItemsJson) currentItems = JSON.parse(currentItemsJson);
+        currentItems.push(newItem);
+        let itemsJson = JSON.stringify(currentItems);
+        window.localStorage.setItem("bagItems", itemsJson);
+        if (restaurantName === "")
+          dispatch(setRestaurantName(dish.restaurantName));
+        dispatch(setDishesInOrder(currentItems));
+        dispatch(resetCurrentDish());
+        toast.success("Order added!");
+      }
+      else{
+        toast.warning("Order from the same restaurant!");
+      }
     } catch (error) {
       toast.error("Something went wrong! Please re-order.");
     } finally {
