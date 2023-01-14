@@ -22,9 +22,10 @@ export const RestaurantPage = () => {
   const dispatch = useDispatch();
   const [restaurant, setRestaurant] = useState<Restaurant>(EmptyRestaurant);
   const getRestaurant = async (restaurantName: String) => {
-    await getRestaurantByName(restaurantName).then((res) =>
-      setRestaurant(res ? res[0] : EmptyRestaurant)
-    );
+    await getRestaurantByName(restaurantName).then((res) => {
+      if (res)
+        if (res.length > 0) setRestaurant(res ? res[0] : EmptyRestaurant);
+    });
   };
 
   const [openDialog, setOpenDialog] = useState(false);
