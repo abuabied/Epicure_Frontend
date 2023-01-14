@@ -71,7 +71,7 @@ export const DetailedCard = (args: {
           component="img"
           height="190px"
           image={require(`./../../../../assets/dishes-imgs/${args.dish.img}`)}
-          alt="rest-img"
+          alt="dish-img"
           sx={{ objectFit: "cover" }}
         />
         <CardContent>

@@ -18,7 +18,7 @@ export const OrderDialogDishSides = () => {
 
   const handleChange = (ev:any) => {
     setSelected(ev.target.value);
-    dispatch(setCurrentDishSides([ev.target.value]));
+    dispatch(setCurrentDishSides(ev.target.value));
   };
 
   return (

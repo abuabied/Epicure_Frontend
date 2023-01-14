@@ -34,7 +34,7 @@ export const Header = () => {
 
   const handleClickProfileDrawer = {
     open: () => {
-      if (getCookie("loggedIn") === "true") toast.success("You're logged in!");
+      if (getCookie("loggedIn") === "true") toast.success(`You're logged in!`);
       else setProfileDrawerOpen(true);
     },
     close: () => {

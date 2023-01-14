@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 import {
   setDishesInOrder,
   setRestaurantName,
-} from "../../../services/data/dishes/dishesInOrderSlicer";
+} from "../../../services/data/dishes/orderSlicer";
 import { resetCurrentDish } from "../../../services/data/dishes/currentDishOrderSlicer";
 
 export const OrderDishDialog = (props: {
@@ -27,7 +27,7 @@ export const OrderDishDialog = (props: {
   const dish = currentDishOrder.dish;
 
   const restaurantName = useSelector(
-    (state: any) => state.dishesInOrder.restaurantName
+    (state: any) => state.order.restaurantName
   );
 
   const createNewItem = () => {
@@ -37,6 +37,7 @@ export const OrderDishDialog = (props: {
       dishImg: dish.img,
       dishSides: currentDishOrder.sides,
       dishChanges: currentDishOrder.changes,
+      quantity: currentDishOrder.quantity,
       finalPrice: dish.price * currentDishOrder.quantity,
     };
   };
