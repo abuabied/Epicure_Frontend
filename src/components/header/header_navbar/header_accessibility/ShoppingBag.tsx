@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { ReactComponent as BagLogo } from "./../../../../assets/icons/bag.svg";
 
 export const ShoppingBag = (handler: { openBag: () => void }) => {
-  const itemsCount = useSelector((state: any) => state.dishesInOrder.counter);
+  const itemsCount = useSelector((state: any) => state.order.counter);
   
 
   const cartLogoBoxStyle = {

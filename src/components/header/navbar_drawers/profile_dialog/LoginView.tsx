@@ -33,9 +33,9 @@ export const LoginView = (args: { closeDialog: () => void }) => {
     if (isEmail(loginData.email)) {
       const res: any = await userLogin(loginData);
       if (res?.data?.status === "success") {
-        toast.success(res?.data?.msg);
-        createCookie("loggedIn", true, 1 / (24 * 60));
+        createCookie("loggedIn", true, 5 / (24 * 60));
         args.closeDialog();
+        toast.success("Logged in for 5mins");
       } else if (res?.data?.status === "failure") toast.warning(res?.data?.msg);
       else toast.error(res?.data?.msg);
     } else {

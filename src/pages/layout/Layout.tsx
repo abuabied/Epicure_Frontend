@@ -6,7 +6,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { setDishesInOrder } from "../../services/data/dishes/dishesInOrderSlicer";
+import { setDishesInOrder } from "../../services/data/dishes/orderSlicer";
 
 export const Layout = () => {
   const dispatch = useDispatch();
