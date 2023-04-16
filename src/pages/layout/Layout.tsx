@@ -21,6 +21,7 @@ export const Layout = () => {
 
   useEffect(() => {
     initOnGoingOrder();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   
   return (

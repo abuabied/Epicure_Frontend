@@ -39,6 +39,7 @@ export const RestaurantPage = () => {
 
   useEffect(() => {
     getRestaurant(restaurantName !== undefined ? restaurantName : "NotFound");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const textStyle = {
