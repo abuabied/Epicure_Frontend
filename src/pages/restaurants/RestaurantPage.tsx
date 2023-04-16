@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import { Typography } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -39,7 +41,6 @@ export const RestaurantPage = () => {
 
   useEffect(() => {
     getRestaurant(restaurantName !== undefined ? restaurantName : "NotFound");
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const textStyle = {
