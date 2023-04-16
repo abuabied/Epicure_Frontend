@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Tab, Tabs } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
