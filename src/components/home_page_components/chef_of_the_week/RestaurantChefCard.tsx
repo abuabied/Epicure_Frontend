@@ -21,7 +21,7 @@ export const RestaurantChefCard = (args: { restaurant: Restaurant }) => {
   return (
     <Card
       sx={{
-        minWidth: "250px",
+        minWidth: "270px",
         width: "270px",
         backgroundColor: "#F9F4EA",
         cursor: "pointer"

@@ -10,7 +10,7 @@ export const HeaderNavBar = (handlers: {
   openHamMenue: () => void;
   openSearch: () => void;
   openProfile: () => void;
-  openCart: () => void;
+  openBag: () => void;
 }) => {
   const windowSize = SetWindowSize();
   const navigate = useNavigate();
@@ -41,7 +41,7 @@ export const HeaderNavBar = (handlers: {
         <HeaderAccessibility
           openSearch={handlers.openSearch}
           openProfile={handlers.openProfile}
-          openCart={handlers.openCart}
+          openBag={handlers.openBag}
         />
       </RightSection>
     </NavBar>

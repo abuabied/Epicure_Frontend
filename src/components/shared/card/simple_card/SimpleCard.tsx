@@ -1,17 +1,10 @@
-import {
-  Card,
-  CardMedia,
-  CardContent,
-  Typography,
-  Container,
-} from "@mui/material";
+import { Card, CardMedia, CardContent, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { Restaurant } from "../../../../constants/interfaces";
 import { scrollToTop } from "../../../../helpers/setWindowSize";
 import { StarRating } from "./StarRating";
 
 export const SimpleCard = (args: { restaurant: Restaurant }) => {
-
   const navigate = useNavigate();
   const goToRestaurantPage = () => {
     scrollToTop();
@@ -39,17 +32,18 @@ export const SimpleCard = (args: { restaurant: Restaurant }) => {
     paddingTop: "1rem",
     "@media(max-width: 768px)": { display: "none" },
   };
+  const cardStyle = {
+    minWidth: "300px",
+    width: "300px",
+    backgroundColor: "#F9F4EA",
+    cursor: "pointer",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+  };
 
   return (
-    <Card
-      sx={{
-        minWidth: "300px",
-        width: "320px",
-        backgroundColor: "#F9F4EA",
-        cursor: "pointer"
-      }}
-      onClick={goToRestaurantPage}
-    >
+    <Card sx={cardStyle} onClick={goToRestaurantPage}>
       <CardMedia
         component="img"
         height="170px"
@@ -57,16 +51,16 @@ export const SimpleCard = (args: { restaurant: Restaurant }) => {
         alt="rest-img"
         sx={{ objectFit: "cover" }}
       />
-      <CardContent>
-        <Typography gutterBottom component="div" sx={cardTileStyle}>
+      <CardContent sx={{ display: "flex", flexDirection: "column" }}>
+        <Typography component="div" sx={cardTileStyle}>
           {args.restaurant.name}
         </Typography>
         <Typography variant="body1" sx={cardDescriptionStyle}>
           {args.restaurant.chefName}
         </Typography>
-        <Container sx={cardStarRatingStyle}>
-          <StarRating rating={args.restaurant.rating} />
-        </Container>
+      </CardContent>
+      <CardContent sx={cardStarRatingStyle}>
+        <StarRating rating={args.restaurant.rating} />
       </CardContent>
     </Card>
   );

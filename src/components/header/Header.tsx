@@ -3,14 +3,16 @@ import { HamburgerDrawer } from "./navbar_drawers/hamburger_drawer/HamburgerDraw
 import { HeaderContainer } from "./styles";
 import { SearchDrawer } from "./navbar_drawers/search_drawer/SearchDrawer";
 import { CartDrawer } from "./navbar_drawers/cart_drawer/CartDrawer";
-import { ProfileDrawer } from "./navbar_drawers/profile_drawer/ProfileDrawer";
 import { HeaderNavBar } from "./header_navbar/HeaderNavBar";
+import { ProfileDialog } from "./navbar_drawers/profile_dialog/ProfileDialog";
+import { getCookie } from "../../services/data/cookies/cookieFunctions";
+import { toast } from "react-toastify";
 
 export const Header = () => {
   const [hamMenueDrawerOpen, setHamMenueDrawerOpen] = useState(false);
   const [searchDrawerOpen, setSearchDrawerOpen] = useState(false);
   const [profileDrawerOpen, setProfileDrawerOpen] = useState(false);
-  const [cartDrawerOpen, setCartDrawerOpen] = useState(false);
+  const [bagDialogOpen, setBagDialogOpen] = useState(false);
 
   const handleClickHamMenueDrawer = {
     open: () => {
@@ -32,19 +34,20 @@ export const Header = () => {
 
   const handleClickProfileDrawer = {
     open: () => {
-      setProfileDrawerOpen(true);
+      if (getCookie("loggedIn") === "true") toast.success(`You're logged in!`);
+      else setProfileDrawerOpen(true);
     },
     close: () => {
       setProfileDrawerOpen(false);
     },
   };
 
-  const handleClickCartDrawer = {
+  const handleClickBagDialog = {
     open: () => {
-      setCartDrawerOpen(true);
+      setBagDialogOpen(true);
     },
     close: () => {
-      setCartDrawerOpen(false);
+      setBagDialogOpen(false);
     },
   };
 
@@ -54,7 +57,7 @@ export const Header = () => {
         openHamMenue={handleClickHamMenueDrawer.open}
         openSearch={handleClickSearchDrawer.open}
         openProfile={handleClickProfileDrawer.open}
-        openCart={handleClickCartDrawer.open}
+        openBag={handleClickBagDialog.open}
       />
       <HamburgerDrawer
         open={hamMenueDrawerOpen}
@@ -64,13 +67,13 @@ export const Header = () => {
         open={searchDrawerOpen}
         handleClose={handleClickSearchDrawer.close}
       />
-      <ProfileDrawer
+      <ProfileDialog
         open={profileDrawerOpen}
         handleClose={handleClickProfileDrawer.close}
       />
       <CartDrawer
-        open={cartDrawerOpen}
-        handleClose={handleClickCartDrawer.close}
+        open={bagDialogOpen}
+        handleClose={handleClickBagDialog.close}
       />
     </HeaderContainer>
   );

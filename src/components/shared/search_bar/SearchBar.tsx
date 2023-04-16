@@ -56,7 +56,7 @@ export const SearchBar = () => {
     <Container sx={{ width: { xs: "95%", sm: "fit-content" }, padding: "0" }}>
       <TextField
         id="inputBar"
-        placeholder="Search for restaurant cuisine, chef"
+        placeholder="Search for restaurant, cuisine"
         size="small"
         sx={inputTextStyle}
         InputProps={{

@@ -1,11 +1,33 @@
 import { Card, CardMedia, CardContent, Typography } from "@mui/material";
+import { useDispatch } from "react-redux";
 import { Dish } from "../../../../constants/interfaces";
+import { setCurrentDishOrder } from "../../../../services/data/dishes/currentDishOrderSlicer";
 import { NoStyleContainer } from "../../helper_components/MyContainers";
 import { ReactComponent as Spicy } from "./../../../../assets/icons/spicyS.svg";
 import { ReactComponent as Vegan } from "./../../../../assets/icons/veganS.svg";
 import { ReactComponent as Vegetarian } from "./../../../../assets/icons/vegetarianS.svg";
+import { toast } from "react-toastify";
 
-export const DetailedCard = (args: { dish: Dish }) => {
+export const DetailedCard = (args: {
+  dish: Dish;
+  openOrderDishDialog: () => void;
+  isRestaurantOpen: boolean;
+}) => {
+  const dispatch = useDispatch();
+  const setCurrentDishOrderClick = () => {
+    dispatch(setCurrentDishOrder(args.dish));
+  };
+
+  const openDishOrderDialog = () => {
+    if (args.isRestaurantOpen) {
+      setCurrentDishOrderClick();
+      args.openOrderDishDialog();
+    }
+    else{
+        toast.info("Restaurant is closed!");
+    }
+  };
+
   const cardTileStyle = {
     fontSize: { xs: "20px", sm: "28px", md: "32px" },
     fontWeight: "400",
@@ -32,24 +54,25 @@ export const DetailedCard = (args: { dish: Dish }) => {
     whiteSpace: "break-spaces",
   };
 
+  const cardStyle = {
+    minWidth: "240px",
+    maxWidth: "240px",
+    backgroundColor: "#F9F4EA",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    cursor: "pointer",
+  };
+
   return (
-    <Card
-      sx={{
-        minWidth: "220px",
-        maxWidth: "270px",
-        backgroundColor: "#F9F4EA",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-      }}
-    >
+    <Card sx={cardStyle} onClick={openDishOrderDialog}>
       <NoStyleContainer>
         <CardMedia
           component="img"
           height="190px"
           image={require(`./../../../../assets/dishes-imgs/${args.dish.img}`)}
-          alt="rest-img"
-          sx={{ objectFit: "cover"}}
+          alt="dish-img"
+          sx={{ objectFit: "cover" }}
         />
         <CardContent>
           <Typography gutterBottom component="div" sx={cardTileStyle}>

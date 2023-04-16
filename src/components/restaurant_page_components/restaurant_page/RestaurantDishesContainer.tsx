@@ -6,7 +6,11 @@ import { filterDishesByCategory } from "../../../helpers/filterFunctions";
 import { DetailedCard } from "../../shared/card/detailed_card/DetailedCard";
 import { NoStyleContainer } from "../../shared/helper_components/MyContainers";
 
-export const RestaurantDishesContainer = (args: {dishes: Dish[]}) => {
+export const RestaurantDishesContainer = (args: {
+  dishes: Dish[];
+  handleClickDish: () => void;
+  isRestaurantOpen: boolean;
+}) => {
   const dishesCategory = useSelector(
     (state: any) => state.dishesCategoryTab.value
   );
@@ -33,35 +37,37 @@ export const RestaurantDishesContainer = (args: {dishes: Dish[]}) => {
       setDishesList([]);
     }
   };
-  
-    const containerStyle = {
-      display: "flex",
-      flexDirection: "row",
-      gap: "3rem",
-      padding: { xs: 0, sm: 0, md: 0, lg: 0 },
-      justifyContent: "center",
-      flexWrap: "wrap",
-      "::-webkit-scrollbar": { display: "none" },
-    };
 
-    useEffect(() => {
-      setDishesList(filterDishesByCategory(args.dishes, "breakfast"));
-    }, []);
+  const containerStyle = {
+    display: "flex",
+    flexDirection: "row",
+    gap: "3rem",
+    padding: { xs: 0, sm: 0, md: 0, lg: 0 },
+    justifyContent: "center",
+    flexWrap: "wrap",
+    "::-webkit-scrollbar": { display: "none" },
+  };
 
-    useEffect(() => {
-      filterDishes();
-    }, [dishesCategory]);
+  useEffect(() => {
+    setDishesList(filterDishesByCategory(args.dishes, "breakfast"));
+  }, []);
 
-    return (
-      <NoStyleContainer>
-        <Container sx={containerStyle}>
-          {dishesList.map((dish: Dish) => (
-            <DetailedCard
-              dish={dish}
-              key={`sig-${dish.name}`}
-            />
-          ))}
-        </Container>
-      </NoStyleContainer>
-    );
-}
+  useEffect(() => {
+    filterDishes();
+  }, [dishesCategory]);
+
+  return (
+    <NoStyleContainer>
+      <Container sx={containerStyle}>
+        {dishesList.map((dish: Dish) => (
+          <DetailedCard
+            dish={dish}
+            openOrderDishDialog={args.handleClickDish}
+            key={`sig-${dish.name}`}
+            isRestaurantOpen={args.isRestaurantOpen}
+          />
+        ))}
+      </Container>
+    </NoStyleContainer>
+  );
+};
