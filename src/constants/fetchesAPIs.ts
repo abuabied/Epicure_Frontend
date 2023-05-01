@@ -1,6 +1,6 @@
 const triggerURL = "http://localhost:3001/api";
 
-export const allAPI = `${triggerURL}/restautrants/getAllRestaurants`;
+export const allAPI = `${triggerURL}/restaurants/getRestaurants`;
 export const popularAPI =
   `${triggerURL}/restaurants/getPopularRestaurants`;
 export const newAPI =

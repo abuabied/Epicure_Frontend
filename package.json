@@ -56,11 +56,6 @@
   },
   "devDependencies": {
     "@types/styled-components": "^5.1.26",
-<<<<<<< HEAD
     "@types/validator": "^13.7.10"
-=======
-    "@types/validator": "^13.7.10",
-    "firebase-tools": "^0.1.6"
->>>>>>> 4564098a40c62b2fa96eb087241b798191dd0e3d
   }
 }
