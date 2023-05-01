@@ -1,4 +1,4 @@
-const triggerURL = "https://us-central1-epicure-server-1.cloudfunctions.net/app/api";
+const triggerURL = "http://localhost:3001/api";
 
 export const allAPI = `${triggerURL}/restautrants/getRestaurants`;
 export const popularAPI =
