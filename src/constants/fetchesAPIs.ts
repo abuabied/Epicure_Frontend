@@ -9,4 +9,11 @@ export const byNameAPI = (restaurantName: String) => {
 export const getChefOfTheWeekAPI = `${triggerURL}/api/chefs/getChefofTheWeek`;
 export const getAllChefsAPI = `${triggerURL}/api/chefs/getAllChefs`;
 export const getPopularChefsAPI = `${triggerURL}/api/chefs/getPopularChefs`;
+<<<<<<< HEAD
 export const getNewChefsAPI = `${triggerURL}/api/chefs/getNewChefs`;
+=======
+export const getNewChefsAPI = `${triggerURL}/api/chefs/getNewChefs`;
+
+export const registerAPI = `${triggerURL}/api/auth/register`;
+export const loginAPI = `${triggerURL}/api/auth/login`;
+>>>>>>> 4564098a40c62b2fa96eb087241b798191dd0e3d

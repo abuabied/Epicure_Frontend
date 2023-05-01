@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Container } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -50,6 +51,7 @@ export const RestaurantDishesContainer = (args: {
 
   useEffect(() => {
     setDishesList(filterDishesByCategory(args.dishes, "breakfast"));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

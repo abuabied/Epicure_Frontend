@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import { Typography } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
