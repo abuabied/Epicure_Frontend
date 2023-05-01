@@ -10,8 +10,11 @@ import { useDispatch } from "react-redux";
 import { setDishesInOrder } from "../../services/data/dishes/orderSlicer";
 
 export const Layout = () => {
+
   const dispatch = useDispatch();
-  const initOnGoingOrder = () => {
+
+  useEffect(() => {
+    const initOnGoingOrder = () => {
     const currentItemsJson = window.localStorage.getItem("bagItems");
     let currentItems = [];
     if (currentItemsJson) currentItems = JSON.parse(currentItemsJson);
@@ -19,10 +22,8 @@ export const Layout = () => {
       dispatch(setDishesInOrder(currentItems));
     }
   };
-
-  useEffect(() => {
     initOnGoingOrder();
-  }, [])
+  }, [dispatch])
   
   return (
     <Page>

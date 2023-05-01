@@ -8,7 +8,9 @@ import {
 
 export const getAllRestaurants = async () => {
   try {
-    return await (await fetch(allAPI)).json();
+    let res = await (await fetch(allAPI)).json();
+    console.log(res)
+    return res;
   } catch (error) {
     return [];
   }

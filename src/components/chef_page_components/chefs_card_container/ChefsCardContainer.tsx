@@ -17,27 +17,6 @@ export const ChefsCardContainer = () => {
 
   const [chefsList, setChefsList] = useState([]);
 
-  const getChefs = async () => {
-    try {
-      switch (chefsCategory) {
-        case "all":
-          await getAllChefs().then((res) => setChefsList(res));
-          break;
-        case "new":
-          await getNewChefs().then((res) => setChefsList(res));
-          break;
-        case "popular":
-          await getPopularChefs().then((res) => setChefsList(res));
-          break;
-        default:
-          setChefsList([]);
-          break;
-      }
-    } catch (error) {
-      setChefsList([]);
-    }
-  };
-
   const containerStyle = {
     display: "flex",
     flexDirection: "row",
@@ -53,6 +32,26 @@ export const ChefsCardContainer = () => {
   }, []);
 
   useEffect(() => {
+    const getChefs = async () => {
+      try {
+        switch (chefsCategory) {
+          case "all":
+            await getAllChefs().then((res) => setChefsList(res));
+            break;
+          case "new":
+            await getNewChefs().then((res) => setChefsList(res));
+            break;
+          case "popular":
+            await getPopularChefs().then((res) => setChefsList(res));
+            break;
+          default:
+            setChefsList([]);
+            break;
+        }
+      } catch (error) {
+        setChefsList([]);
+      }
+    };
     getChefs();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chefsCategory]);

@@ -1,19 +1,22 @@
-const triggerURL = "https://us-central1-epicure-server-1.cloudfunctions.net/app";
-export const allAPI = `${triggerURL}/api/restautrants/getRestaurants`;
-export const popularAPI = `${triggerURL}/api/restautrants/getPopularRestaurants`;
-export const newAPI = `${triggerURL}/api/restautrants/getNewRestaurants`;
-export const openAPI = `${triggerURL}/api/restautrants/getOpenRestaurants`;
-export const byNameAPI = (restaurantName: String) => {
-  return `${triggerURL}/api/restautrants/getRestaurantByName?name=${restaurantName}`;
-};
-export const getChefOfTheWeekAPI = `${triggerURL}/api/chefs/getChefofTheWeek`;
-export const getAllChefsAPI = `${triggerURL}/api/chefs/getAllChefs`;
-export const getPopularChefsAPI = `${triggerURL}/api/chefs/getPopularChefs`;
-<<<<<<< HEAD
-export const getNewChefsAPI = `${triggerURL}/api/chefs/getNewChefs`;
-=======
-export const getNewChefsAPI = `${triggerURL}/api/chefs/getNewChefs`;
+const triggerURL = "http://localhost:3001/api";
 
-export const registerAPI = `${triggerURL}/api/auth/register`;
-export const loginAPI = `${triggerURL}/api/auth/login`;
->>>>>>> 4564098a40c62b2fa96eb087241b798191dd0e3d
+export const allAPI = `${triggerURL}/restautrants/getAllRestaurants`;
+export const popularAPI =
+  `${triggerURL}/restaurants/getPopularRestaurants`;
+export const newAPI =
+  `${triggerURL}/restaurants/getNewRestaurants`;
+export const openAPI =
+  `${triggerURL}/restaurants/getOpenRestaurants`;
+export const byNameAPI = (restaurantName: String) => {
+  return `${triggerURL}/restaurants/getRestaurantByName?name=${restaurantName}`;
+};
+
+export const getChefOfTheWeekAPI =
+  `${triggerURL}/chefs/getChefofTheWeek`;
+export const getAllChefsAPI = `${triggerURL}/chefs/getAllChefs`;
+export const getPopularChefsAPI =
+  `${triggerURL}/chefs/getPopularChefs`;
+export const getNewChefsAPI = `${triggerURL}/chefs/getNewChefs`;
+
+export const registerAPI = `${triggerURL}/auth/register`;
+export const loginAPI = `${triggerURL}/auth/login`;
