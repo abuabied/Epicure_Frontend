@@ -1,10 +1,10 @@
 const triggerURL = "http://localhost:3001/api";
 
-export const allAPI = `${triggerURL}/restautrants/getRestaurants`;
+export const allAPI = `${triggerURL}/restautrants/getAllRestaurants`;
 export const popularAPI =
   `${triggerURL}/restaurants/getPopularRestaurants`;
 export const newAPI =
-  `${triggerURL}//restaurants/getNewRestaurants`;
+  `${triggerURL}/restaurants/getNewRestaurants`;
 export const openAPI =
   `${triggerURL}/restaurants/getOpenRestaurants`;
 export const byNameAPI = (restaurantName: String) => {

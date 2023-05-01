@@ -19,35 +19,36 @@ export const RestaurantCardContainer = () => {
 
   const [restaurantsList, setRestaurantsList] = useState([]);
 
-  const getRestaurants = async () => {
-    try {
-      switch (restaurantsCategory) {
-        case "all":
-          await getAllRestaurants().then((res) => setRestaurantsList(res));
-          break;
-        case "new":
-          await getNewRestaurants().then((res) => setRestaurantsList(res));
-          break;
-        case "popular":
-          await getPopularRestaurants().then((res) => setRestaurantsList(res));
-          break;
-        case "open":
-          await getOpenRestaurants().then((res) => setRestaurantsList(res));
-          break;
-        default:
-          setRestaurantsList([]);
-          break;
-      }
-    } catch (error) {
-      setRestaurantsList([]);
-    }
-  };
-
   useEffect(() => {
     getAllRestaurants().then((res) => setRestaurantsList(res));
   }, []);
 
   useEffect(() => {
+    const getRestaurants = async () => {
+      try {
+        switch (restaurantsCategory) {
+          case "all":
+            await getAllRestaurants().then((res) => setRestaurantsList(res));
+            break;
+          case "new":
+            await getNewRestaurants().then((res) => setRestaurantsList(res));
+            break;
+          case "popular":
+            await getPopularRestaurants().then((res) =>
+              setRestaurantsList(res)
+            );
+            break;
+          case "open":
+            await getOpenRestaurants().then((res) => setRestaurantsList(res));
+            break;
+          default:
+            setRestaurantsList([]);
+            break;
+        }
+      } catch (error) {
+        setRestaurantsList([]);
+      }
+    };
     getRestaurants();
   }, [restaurantsCategory]);
 
